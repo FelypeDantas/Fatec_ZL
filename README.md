@@ -9,7 +9,8 @@ Este repositório contém códigos desenvolvidos durante as matérias da faculda
 - [Interfatecs_2024](Interfatecs_2024/README.md): Exercicios propostos na competicao de Interfatecs em 2024.
 - [SO1](SO1/README.md): Códigos e atividades referentes à disciplina de Sistemas Operacionais 1.
 - [Testes_Java](Testes_Java/README.md): Exercícios e testes realizados na disciplina de Testes em Java.
-- [POO](POO/README.md): Códigos e exercícios desenvolvidos com o modelo de Programação POO em Java
+- [POO](POO/README.md): Códigos e exercícios desenvolvidos com o modelo de Programação POO em Java.
+- [ED](Estruturas_De_Dados/README.md): Materia de estrutura de dados em Java, lecionada pelos professores <strong>Leandro Colevatti</strong> e <strong>Wellington Oliveira</strong>
 
 ## Como usar
 
