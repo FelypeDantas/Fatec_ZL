@@ -127,10 +127,10 @@ public class PacienteBoundary extends Application {
             }
         };
 
-        TableColumn<Paciente, Void> col6 = new TableColumn<>("Ações");
-        col6.setCellFactory( callback );
+        TableColumn<Paciente, Void> col8 = new TableColumn<>("Ações");
+        col8.setCellFactory( callback );
 
-        tableView.getColumns().addAll(col1, col2, col3, col4, col5, col6, col7);
+        tableView.getColumns().addAll(col1, col2, col3, col4, col5, col6, col7, col8);
         tableView.setItems( control.getLista() );
 
         tableView.getSelectionModel().selectedItemProperty()
