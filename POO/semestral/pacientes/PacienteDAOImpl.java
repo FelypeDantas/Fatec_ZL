@@ -10,7 +10,7 @@ import java.util.List;
 
 import pacientes.Paciente;
 
-public class PacienteDAOImpl {
+public class PacienteDAOImpl implements PacienteDAO {
     private static final String DB_CLASS = "org.mariadb.jdbc.Driver";
     private static final String DB_URL = "jdbc:mariadb://localhost:3306/hospitaldb?allowPublicKeyRetrieval=true";
     private static final String DB_USER = "root";
@@ -31,7 +31,7 @@ public class PacienteDAOImpl {
     public void inserir(Paciente p) throws PacienteException {
       try {
         String SQL = """
-            INSERT INTO estoque (id, nome, cadastro, sexo, endereco, telefone, email, cartaoSus )
+            INSERT INTO paciente (id, nome, cadastro, sexo, endereco, telefone, email, cartaoSus )
             VALUES (?, ?, ?, ?, ?, ?, ?, ? )
             """;
         PreparedStatement stm = con.prepareStatement(SQL);
@@ -78,7 +78,7 @@ public class PacienteDAOImpl {
     public void remover(Paciente p) throws PacienteException {
       try {
         String SQL = """
-                DELETE FROM estoque WHERE id=?
+                DELETE FROM paciente WHERE id=?
             """;
         PreparedStatement stm = con.prepareStatement(SQL);
         stm.setInt(1, e.getId());
