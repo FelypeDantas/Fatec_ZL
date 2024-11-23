@@ -21,7 +21,13 @@ public class PacienteControl {
     private StringProperty cartaoSus = new SimpleStringProperty("");
     private IntegerProperty id = new SimpleIntegerProperty(0);
 
-    private int contador = 2;
+    private int contador = 0;
+
+    private PacienteDAO pacienteDAO;
+
+    public PacienteControl() throws PacienteException {
+        pacienteDAO = new PacienteDAOImpl();
+    }
 
     public void entidadeParaTela(Paciente p) { 
         this.id.set( p.getId() );
@@ -37,6 +43,8 @@ public class PacienteControl {
     public void excluir( Paciente p) { 
         System.out.println("Excluido paciente com nome: " + p.getNome());
         lista.remove( p );
+        pacienteDAO.remover(p);
+        pesquisarTodos();
     }
 
     public void gravar() { 
@@ -52,6 +60,7 @@ public class PacienteControl {
             p.setEmail( this.email.get() );
             p.setCartaoSus( this.cartaoSus.get() );
             lista.add( p );
+            pacienteDAO.inserir(p);
         } else { 
             for (Paciente p : lista) { 
                 if (p.getId() == this.id.get()) { 
@@ -62,9 +71,11 @@ public class PacienteControl {
                     p.setTelefone( this.telefone.get() );
                     p.setEmail( this.email.get() );
                     p.setCartaoSus( this.cartaoSus.get() );
+                    pacienteDAO.atualizar(p);
                 }
             }
         }
+        pesquisarTodos();
         limparTudo();
         System.out.println("Lista tamanho: " + lista.size());
     }
