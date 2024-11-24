@@ -69,7 +69,13 @@ public class PacienteBoundary extends Application {
           }
         });
         Button btnPesquisar = new Button("Pesquisar");
-        btnPesquisar.setOnAction( e ->control.pesquisarPorNome());
+        btnPesquisar.setOnAction(e -> {
+            try {
+              control.pesquisarPorNome();
+            } catch (PacienteException er) {
+              alert(AlertType.ERROR, "Errro ao pesquisar");
+            }
+          });
 
         Button btnLimpar = new Button("*");
         btnLimpar.setOnAction( e -> control.limparTudo() );
