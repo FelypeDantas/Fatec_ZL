@@ -102,6 +102,7 @@ public class PacienteControl {
                 email.set( p.getEmail() );
                 telefone.set( p.getTelefone() );
                 cartaoSus.set( p.getCartaoSus() );
+                break; // Sai do loop após encontrar o paciente
             }
         } 
 
