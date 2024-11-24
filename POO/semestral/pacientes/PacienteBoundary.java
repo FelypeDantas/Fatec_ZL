@@ -59,9 +59,14 @@ public class PacienteBoundary extends Application {
         paneForm.add(txtCartaoSus, 1, 6);
 
         Button btnGravar = new Button("Gravar");
-        btnGravar.setOnAction( e -> {
+        btnGravar.setOnAction(
+        e -> {
+          try {
             control.gravar();
             tableView.refresh();
+          } catch (PacienteException er) {
+            alert(AlertType.ERROR, "Erro ao gravar");
+          }
         });
         Button btnPesquisar = new Button("Pesquisar");
         btnPesquisar.setOnAction( e ->control.pesquisarPorNome());
