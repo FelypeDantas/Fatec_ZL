@@ -9,7 +9,7 @@ public interface PacienteDAO {
 
     void remover(Paciente p) throws PacienteException;
 
-    List<Paciente> PesquisarPorNome(String nome) throws PacienteException;
+    List<Paciente> pesquisarPorNome(String nome) throws PacienteException;
 
-    List<Paciente> PesquisarTodos() throws PacienteException;
+    List<Paciente> pesquisarTodos() throws PacienteException;
 }
