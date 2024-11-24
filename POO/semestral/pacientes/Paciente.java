@@ -11,6 +11,17 @@ public class Paciente {
     private String cartaoSus = "";
     private int id = 0;
 
+    public Paciente(String nome, String sexo, String endereco, String telefone, String email, String cartaoSus) {
+        this.nome = nome;
+        this.sexo = sexo;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.email = email;
+        this.cartaoSus = cartaoSus;
+        this.cadastro = LocalDate.now(); 
+    }
+
+
     public String getNome(){
         return this.nome;
     }
