@@ -158,6 +158,13 @@ public class PacienteBoundary extends Application {
         Bindings.bindBidirectional(txtCartaoSus.textProperty(), control.cartaoSusProperty());
     }
 
+     public void alert(AlertType tipo, String msg) { 
+        Alert alertWindow = new Alert(tipo);
+        alertWindow.setHeaderText("Alerta");
+        alertWindow.setContentText(msg);
+        alertWindow.showAndWait();
+    }
+
     public static void main(String[] args) {
         Application.launch(PacienteBoundary.class, args);
     }
