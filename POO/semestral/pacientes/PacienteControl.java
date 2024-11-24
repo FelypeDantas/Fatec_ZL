@@ -105,8 +105,13 @@ public class PacienteControl {
                 break; // Sai do loop após encontrar o paciente
             }
         } 
-
     }
+
+    public void pesquisarTodos() {
+        lista.clear(); // Limpa a lista
+        lista.addAll(pacienteDAO.buscarTodos()); // Adiciona todos os pacientes na lista
+    }
+
 
     public ObservableList<Paciente> getLista() { 
         return this.lista;
