@@ -33,6 +33,13 @@ public class PacienteBoundary extends Application {
 
     @Override
     public void start(Stage stage) { 
+
+    try {
+      control = new PacienteControl();
+    } catch (PacienteException er) {
+      alert(AlertType.ERROR, "Erro ao incializar sistema");
+    }
+        
         BorderPane panePrincipal = new BorderPane();
 
         GridPane paneForm = new GridPane();
