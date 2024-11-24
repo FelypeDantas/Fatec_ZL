@@ -125,12 +125,15 @@ public class PacienteBoundary extends Application {
                 TableCell<Paciente, Void> tc = new TableCell<>() { 
                     final Button btnExcluir = new Button("Apagar");
                     {
-                        btnExcluir.setOnAction( 
-                            e -> { 
-                                Paciente p = tableView.getItems().get( getIndex() );
-                                control.excluir( p ); 
-                            }
-                        );
+                       btnExcluir.setOnAction(
+                                e -> {
+                                    try{
+                                        Paciente p = tableView.getItems().get(getIndex());
+                                        control.excluir(p);
+                                    }catch(PacienteException er){
+                                        alert(AlertType.ERROR, "Erro ao excluir");
+                                    }
+                                });
                     }
                     public void updateItem(Void item, boolean empty) { 
                         super.updateItem(item, empty);
