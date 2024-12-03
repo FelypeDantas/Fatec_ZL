@@ -305,9 +305,9 @@ select * from carro
 select * from empresa
 select * from viagem
 
---ExercÌcios
---1)Apresentar marca e modelo de carro e a soma total da dist‚ncia percorrida pelos carros,
---em viagens, de uma dada empresa, ordenado pela dist‚ncia percorrida
+--Exerc√≠cios
+--1)Apresentar marca e modelo de carro e a soma total da dist√¢ncia percorrida pelos carros,
+--em viagens, de uma dada empresa, ordenado pela dist√¢ncia percorrida
 SELECT
 	carro.marca AS marca,
 	carro.modelo AS modelo,
@@ -318,8 +318,8 @@ INNER JOIN empresa ON empresa.id = carro.idEmpresa
 GROUP BY carro.marca, carro.modelo
 ORDER BY [distancia soma total] DESC
 
---2)Apresentar nome das empresas cuja soma total da dist‚ncia percorrida pelos carros,
---em viagens, È superior a 50000 km
+--2)Apresentar nome das empresas cuja soma total da dist√¢ncia percorrida pelos carros,
+--em viagens, √© superior a 50000 km
 SELECT
 	empresa.nome AS [nome empresa],
 	SUM(viagem.distanciaPercorrida) AS [distancia percorrida]
@@ -329,10 +329,10 @@ INNER JOIN viagem ON viagem.idCarro = carro.id
 GROUP BY empresa.nome
 HAVING  SUM(viagem.distanciaPercorrida) > 50000
 
---3)Apresentar nome das empresas cuja soma total da dist‚ncia percorrida pelos carros
---e a media das dist‚ncias percorridas por seus carros em viagens.
---A mÈdia deve ser exibida em uma coluna chamada mediaDist e com 2 casas decimais apenas.
---Deve-se ordenar a saÌda pela mÈdia descrescente
+--3)Apresentar nome das empresas cuja soma total da dist√¢ncia percorrida pelos carros
+--e a media das dist√¢ncias percorridas por seus carros em viagens.
+--A m√©dia deve ser exibida em uma coluna chamada mediaDist e com 2 casas decimais apenas.
+--Deve-se ordenar a sa√≠da pela m√©dia descrescente
 SELECT
 	empresa.nome AS [nome da empresa],
 	SUM(viagem.distanciaPercorrida) AS [distancia percorrida],
@@ -343,7 +343,7 @@ INNER JOIN viagem ON viagem.idCarro = carro.id
 GROUP BY empresa.nome
 ORDER BY mediaDist DESC
 
---4)Apresentar nome das empresas cujos carro percorreram a maior dist‚ncia dentre as cadastradas
+--4)Apresentar nome das empresas cujos carro percorreram a maior dist√¢ncia dentre as cadastradas
 SELECT
 	empresa.nome AS [nome empresa],
 	viagem.distanciaPercorrida AS [distancia percorrida]
@@ -357,7 +357,7 @@ WHERE viagem.distanciaPercorrida IN (
 
 --5)Apresentar nome das empresas e a quantidade de carros cadastrados para cada empresa
 --Desde que a empresa tenha 3 ou mais carros
---A saÌda deve ser ordenada pela quantidade de carros, descrescente
+--A sa√≠da deve ser ordenada pela quantidade de carros, descrescente
 SELECT
 	empresa.nome AS [nome da empresa],
 	COUNT(carro.id) AS [quantidade carros]
@@ -367,17 +367,16 @@ GROUP BY empresa.nome
 HAVING COUNT(carro.id) >= 3
 ORDER BY [quantidade carros] DESC
 
---6)Consultar Nomes das empresas que n„o tem carros cadastrados
+--6)Consultar Nomes das empresas que n√£o tem carros cadastrados
 SELECT
 	empresa.nome AS [nome empresa]
 FROM empresa
 LEFT OUTER JOIN carro ON carro.idEmpresa = empresa.id
 WHERE carro.id IS NULL
 
---7)Consultar Marca e modelos dos carros que n„o fizeram viagens
-SELECT
+--7)Consultar Marca e modelos dos carros que n√£o fizeram viagens
+SELECT DISTINCT
 	carro.marca AS [MARCA DO CARRO],
 	carro.modelo AS [MODELO DO CARRO]
 FROM carro
-INNER JOIN viagem ON viagem.idCarro = carro.id
-WHERE 
+LEFT OUTER JOIN viagem ON viagem.idCarro = carro.id
