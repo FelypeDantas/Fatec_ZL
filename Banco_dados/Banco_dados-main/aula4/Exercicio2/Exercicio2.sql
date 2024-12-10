@@ -53,10 +53,10 @@ INSERT INTO servico VALUES('DXO9876', 1, 4, 280, '2020-08-01')
 INSERT INTO servico VALUES('DXO9876', 4, 1, 30, '2020-08-01')
 INSERT INTO servico VALUES('EGT4631', 3, 1, 90, '2020-08-02')
 INSERT INTO servico VALUES('DXO9876', 2, 1, 125, '2020-08-07')
-INSERT INTO cliente VALUES('DXO9876', 'Jo„o Alves',	'R.	Pereira Barreto', 1258, 'Jd. Oliveiras', '2154-9658')
+INSERT INTO cliente VALUES('DXO9876', 'Jo√£o Alves',	'R.	Pereira Barreto', 1258, 'Jd. Oliveiras', '2154-9658')
 INSERT INTO cliente VALUES('LKM7380', 'Ana Maria', 'R. 7 de Setembro', 259, 'Centro', '9658-8541')
-INSERT INTO cliente VALUES('EGT4631', 'Clara Oliveira', 'Av. NaÁıes Unidas', 10254, 'Pinheiros', '2458-9658')
-INSERT INTO cliente VALUES('BCD7521', 'JosÈ Simıes', 'R. XV de Novembro', 36, '¡gua Branca', '7895-2459')
+INSERT INTO cliente VALUES('EGT4631', 'Clara Oliveira', 'Av. Na√ß√µes Unidas', 10254, 'Pinheiros', '2458-9658')
+INSERT INTO cliente VALUES('BCD7521', 'Jos√© Sim√µes', 'R. XV de Novembro', 36, '√Ågua Branca', '7895-2459')
 INSERT INTO cliente VALUES('AFT9087', 'Paula Rocha', 'R. Anhaia', 548, 'Barra Funda', '6958-2548')
 GO
 SELECT * FROM carro
@@ -68,15 +68,13 @@ SELECT * FROM cliente
 SELECT
 	cliente.nome AS 'Nome Cliente',
 	cliente.telefone AS telefone
-FROM
-	cliente
+FROM cliente
 WHERE cliente.carro LIKE '%DXO9876%'
 
--- 2. EndereÁo concatenado do cliente que fez o serviÁo do dia 2020-08-02				
+-- 2. Endere√ßo concatenado do cliente que fez o servi√ßo do dia 2020-08-02				
 SELECT 
     CONCAT(cliente.logradouro, ', ', cliente.bairro, ', ', cliente.numero) AS endereco
-FROM 
-    cliente
+FROM cliente
 JOIN 
     servico ON cliente.carro = servico.carro
 WHERE 
@@ -86,8 +84,7 @@ WHERE
 SELECT
 	carro.ano AS ano,
 	carro.placa AS placa
-FROM
-	carro
+FROM carro
 WHERE carro.ano < 2001
 ORDER BY carro.ano
 
@@ -97,7 +94,7 @@ SELECT
 FROM carro
 WHERE carro.ano > 2005
 
--- 6. CÛdigo e nome das peÁas que custam menos de R$80,00			
+-- 6. C√≥digo e nome das pe√ßas que custam menos de R$80,00			
 SELECT
 	pecas.codigo AS codigo,
 	pecas.nome AS nome
