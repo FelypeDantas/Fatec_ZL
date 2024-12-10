@@ -31,32 +31,31 @@ FOREIGN KEY (CPF_Paciente) REFERENCES paciente(cpf),
 FOREIGN KEY (codigo_medico) REFERENCES medico(codigo)
 )
 GO
-INSERT INTO paciente VALUES('35454562890', 'JosÈ Rubens', 'Campos Salles', 2750, 'Centro', '21450998', '1954-10-18')
+INSERT INTO paciente VALUES('35454562890', 'Jos√© Rubens', 'Campos Salles', 2750, 'Centro', '21450998', '1954-10-18')
 INSERT INTO paciente VALUES('29865439810', 'Ana Claudia', 'Sete de Setembro', 178, 'Centro', '97382764', '1960-05-29')
-INSERT INTO paciente VALUES('82176534800', 'Marcos AurÈlio', 'TimÛteo Penteado', 236, 'Vila Galv„o', '68172651', '1980-09-24')
-INSERT INTO paciente VALUES('12386758770', 'Maria Rita', 'Castello Branco', 7765, 'Vila Ros·lia', NULL, '1975-03-30')
+INSERT INTO paciente VALUES('82176534800', 'Marcos Aur√©lio', 'Tim√≥teo Penteado', 236, 'Vila Galv√£o', '68172651', '1980-09-24')
+INSERT INTO paciente VALUES('12386758770', 'Maria Rita', 'Castello Branco', 7765, 'Vila Ros√°lia', NULL, '1975-03-30')
 INSERT INTO paciente VALUES('92173458910', 'Joana de Souza', 'XV de Novembro', 298, 'Centro', '21276578', '1944-04-24')
 INSERT INTO medico VALUES(1, 'Wilson Cesar', 'Pediatra')
 INSERT INTO medico VALUES(2, 'Marcia Matos', 'Geriatra')
 INSERT INTO medico VALUES(3, 'Carolina Oliveira', 'Ortopedista')
-INSERT INTO medico VALUES(4, 'Vinicius Araujo', 'ClÌnico Geral')
+INSERT INTO medico VALUES(4, 'Vinicius Araujo', 'Cl√≠nico Geral')
 INSERT INTO prontuario VALUES('2020-09-10', '35454562890', 2, 'Reumatismo', 'Celebra')
-INSERT INTO prontuario VALUES('2020-09-10', '92173458910', 2, 'Renite AlÈrgica', 'Allegra')
-INSERT INTO prontuario VALUES('2020-09-12', '29865439810', 1, 'InflamaÁ„o de garganta', 'Nimesulida')
+INSERT INTO prontuario VALUES('2020-09-10', '92173458910', 2, 'Renite Al√©rgica', 'Allegra')
+INSERT INTO prontuario VALUES('2020-09-12', '29865439810', 1, 'Inflama√ß√£o de garganta', 'Nimesulida')
 INSERT INTO prontuario VALUES('2020-09-13', '35454562890', 2, 'H1N1', 'Tamiflu')
 INSERT INTO prontuario VALUES('2020-09-15', '82176534800', 4, 'Gripe', 'Resprin')
-INSERT INTO prontuario VALUES('2020-09-15', '12386758770', 3, 'BraÁo Quebrado', 'Dorflex + Gesso')
+INSERT INTO prontuario VALUES('2020-09-15', '12386758770', 3, 'Bra√ßo Quebrado', 'Dorflex + Gesso')
 GO
 SELECT * FROM paciente
 SELECT * FROM medico
 SELECT * FROM prontuario
 
--- 1. Nome e EndereÁo (concatenado) dos pacientes com mais de 50 anos				
+-- 1. Nome e Endere√ßo (concatenado) dos pacientes com mais de 50 anos				
 SELECT
 	paciente.nome AS nome,
 	CONCAT(paciente.bairro, ', ', paciente.rua, ', ', paciente.numero) AS endereco
-FROM
-	paciente
+FROM paciente
 WHERE DATEDIFF(YEAR, paciente.data_nasc, GETDATE()) < 50
 
 -- 2. Qual a especialidade de Carolina Oliveira		
