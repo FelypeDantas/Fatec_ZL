@@ -31,18 +31,18 @@ semestre		INT				NOT NULL
 PRIMARY KEY(codigo)
 )
 GO
-INSERT INTO aluno VALUES(12345,'Jose','Silva','Almirante Noronha',236,'Jardim São Paulo',1589000,'69875287')
+INSERT INTO aluno VALUES(12345,'Jose','Silva','Almirante Noronha',236,'Jardim SÃ£o Paulo',1589000,'69875287')
 INSERT INTO aluno VALUES(12346,'Ana','Maria Bastos','Anhaia',1568,'Barra Funda',3569000,'25698526')
 INSERT INTO aluno VALUES(12347,'Mario','Santos','XV de Novembro',1841,'Centro',1020030,'')
-INSERT INTO aluno VALUES(12348,'Marcia','Neves','Voluntários da Patria',255,'Santana',2785090,'78964152')
-INSERT INTO curso VALUES(1,'Informática',2800,'Tarde')
-INSERT INTO curso VALUES(2,'Informática',2800,'Noite')
+INSERT INTO aluno VALUES(12348,'Marcia','Neves','VoluntÃ¡rios da Patria',255,'Santana',2785090,'78964152')
+INSERT INTO curso VALUES(1,'InformÃ¡tica',2800,'Tarde')
+INSERT INTO curso VALUES(2,'InformÃ¡tica',2800,'Noite')
 INSERT INTO curso VALUES(3,'Logistica',2650,'Tarde')
 INSERT INTO curso VALUES(4,'Logistica',2650,'Noite')
-INSERT INTO curso VALUES(5,'Plásticos',2500,'Tarde')
-INSERT INTO curso VALUES(6,'Plásticos',2500,'Noite')
-INSERT INTO disciplina VALUES(1,'Informática',4,'Tarde',1)
-INSERT INTO disciplina VALUES(2,'Informática',4,'Noite',1)
+INSERT INTO curso VALUES(5,'PlÃ¡sticos',2500,'Tarde')
+INSERT INTO curso VALUES(6,'PlÃ¡sticos',2500,'Noite')
+INSERT INTO disciplina VALUES(1,'InformÃ¡tica',4,'Tarde',1)
+INSERT INTO disciplina VALUES(2,'InformÃ¡tica',4,'Noite',1)
 INSERT INTO disciplina VALUES(3,'Quimica',4,'Tarde',1)
 INSERT INTO disciplina VALUES(4,'Quimica',4,'Noite',1)
 INSERT INTO disciplina VALUES(5,'Banco de Dados I',2,'Tarde',3)
@@ -57,38 +57,32 @@ SELECT * FROM disciplina
 -- 1. Nome e sobrenome, como nome completo dos Alunos Matriculados
 SELECT
 	CONCAT(aluno.nome, ' ', aluno.sobrenome) AS Nome_Completo
-FROM
-	aluno
-WHERE aluno.RA > 0
+FROM aluno
 
--- 2. Rua, nº , Bairro e CEP como Endereço do aluno que não tem telefone				
+-- 2. Rua, nÂº , Bairro e CEP como EndereÃ§o do aluno que nÃ£o tem telefone				
 SELECT
 	aluno.rua AS rua,
 	aluno.numero AS numero,
 	aluno.bairro AS bairro,
 	aluno.CEP AS CEP
-FROM
-	aluno
+FROM aluno
 WHERE aluno.telefone = ''
 
 -- 3. Telefone do aluno com RA 12348		
 SELECT
 	aluno.telefone
-FROM
-	aluno
+FROM aluno
 WHERE aluno.RA LIKE '%12348%'
 
 -- 4. Nome e Turno dos cursos com 2800 horas			
 SELECT
 	curso.nome,
 	curso.turno
-FROM
-	curso
+FROM curso
 WHERE curso.cargaHoraria LIKE '%2800%'
 
 -- 5. O semestre do curso de Banco de Dados I noite			
 SELECT
 	disciplina.semestre
-FROM
-	disciplina
+FROM disciplina
 WHERE disciplina.codigo = 6
