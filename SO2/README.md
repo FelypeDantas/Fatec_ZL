@@ -87,3 +87,13 @@ O bit SetGID, quando usado em um arquivo, faz com que o programa seja executado 
 
 Quando um diretório tem o sticky bit definido, seus arquivos podem ser excluídos ou renomeados apenas pelo proprietário do arquivo, pelo proprietário do diretório e pelo usuário root.
 - Exemplo de uso: ```chmod o+t path_do_arquivo```.
+
+os links são ponteiros que apontam para um arquivo ou diretório onde estiver. Criar links é uma espécie de atalho para acessar um arquivo. Existem 2 tipos de links:
+- Hard Link: É o apontamento direto do para o arquivo no sistema de arquivos para um arquivo no sistema secundário de armazenamento, é permitido que um mesmo arquivo sistema secundário de armazenamento aparece inúmeras vezes no sistema de arquivos (na RAM) porém em pontos diferentes na árvore, todos os Hard Links de um arquivo possuem o mesmo número i-node. Exemplo de uso `ln <arquivo_origem> <arquivo_link>`
+
+- Link simbolico: Um link simbólico é semelhante ao recurso de atalho de arquivo usado nos sistemas operacionais em geral. Cada arquivo link contém um valor i-node separado que aponta para o arquivo original. Da mesma forma que os Hard Links, todas as alterações nos dados de um dos arquivos são refletidas no outro mas a alteração é feita no arquivo e não no link.
+Exemplo de uso `ln -s <arquivo_origem> <link_simbolico>`.
+
+#### Capitulo 5 : Usuários GNU/Linux
+
+Um UID é um número atribuído pelo GNU/Linux a cada usuário no sistema e este número é usado para identifica-lo no sistema e determinar quais recursos do sistema ele pode acessar, estas identificações estão armazenadas no arquivo `/etc/passwd`, arquivo este ao qual armazena informações dos usuários.
