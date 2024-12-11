@@ -48,4 +48,42 @@ No Linux encontrar arquivos sem extensão pode se tornar comum, o comando `file`
 
 Caso necessite compilar um arquivo c++ no terminal linux o comando seria:
 1. g++ -o arquivo arquivo.cpp
-2.  ./arquivo 
+2.  ./arquivo
+
+Arquivos e diretórios tem 3 tipos de permissão (PADRÃO):
+Read (r): permissão de leitura;
+Write (w): permissão de escrita;
+Execute (x): permissão de executar se for um arquivo e permissão de listagem caso seja um diretório;
+
+Cada arquivo e diretório define seu controle de acesso por 3 classes:
+User (u): é o proprietário do arquivo.
+Group (g): é o grupo dono do arquivo, e dentro do grupo pode conter vários usuários.
+Others (o): são todos os outros usuários que não se enquadram nos dois casos acima.
+
+outra forma de mostrar as permissões são pelos números que as representam:
+- 0 - Nenhuma permissão de acesso	
+- 1 - Permissão de execução				x
+- 2 - Permissão de gravação				w
+- 3 - Permissão de gravação e execução		wx
+- 4 - Permissão de leitura				r
+- 5 - Permissão de leitura e execução			rx
+- 6 - Permissão de leitura e gravação			rw
+- 7 - Permissão de leitura, gravação e execução	rwx
+
+Em sistemas operacionais GNU/Linux, o comando chmod é usado para alterar o modo de acesso de um arquivo.
+um exemplo de uso seria `chmod ug+x script.sh`, a qual estaria dando a permissão com chmod, ug seria para usuário e grupo e adicionando a eles com ' + ' a permissão de execução (x) com relação ao script.sh.
+
+Por padrão ao ser criado um novo usuário este recebe a permissão `rw-r--r--` mas você pode usar o comando umask para determinar as permissões padrões de seu novo usuário.
+
+O umask é o valor subtraído das permissões 666 (rw-rw-rw-) ao criar novos arquivos ou de 777 (rwxrwxrwx) ao criar novos diretórios. Nesse caso use o comando `umask -S` para inclusive ter uma visualização mais humana das permissões que tem, e a sua saida terá `u=rwx, g=rx, o=rx`, ou seja o usuário tem permissão de leitura, escrita e execução, enquanto todos os outros apenas podem ler e executar.
+
+O comando chgrp no GNU/Linux é usado para alterar a propriedade do grupo de um arquivo ou diretório. Todos os arquivos pertencem a um proprietário e a um grupo e você pode definir o proprietário usando o comando chown.
+
+O bit SetUID permite que um arquivo seja executado com as permissões do proprietário do arquivo, não do usuário que o executa. Ou seja, se um usuário comum executar um programa que tenha o SetUID ativado e o proprietário for o root, o programa será executado com permissões de root, permitindo ao usuário executar tarefas que normalmente só o root poderia fazer. Isso ocorre sem precisar usar o comando `sudo` ou estar logado como root.
+- Exemplo de uso: ```chmod u+s path_do_arquivo```
+
+O bit SetGID, quando usado em um arquivo, faz com que o programa seja executado com as permissões do grupo do proprietário do arquivo, e não do grupo do usuário que o executa. Em diretórios, ele faz com que os arquivos criados dentro do diretório herdem o grupo do diretório, em vez do grupo do usuário que criou o arquivo.
+- Exemplo de uso: ```chmod g+s path_do_arquivo```.
+
+Quando um diretório tem o sticky bit definido, seus arquivos podem ser excluídos ou renomeados apenas pelo proprietário do arquivo, pelo proprietário do diretório e pelo usuário root.
+- Exemplo de uso: ```chmod o+t path_do_arquivo```.
