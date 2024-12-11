@@ -145,4 +145,4 @@ O padrão Ext3 é um padrão para o sistema de arquivos com journaling que é co
 
 Padrão Ext4 é um sistema de arquivos com journaling para Linux, desenvolvido como o sucessor do ext3. O ext4 era inicialmente uma série de extensões compatíveis com versões anteriores para ext3, muitas delas originalmente desenvolvidas por Cluster File Systems, destinadas a estender os limites de armazenamento e adicionar outras melhorias de desempenho. No entanto, outros desenvolvedores do kernel Linux se opuseram a aceitar extensões para ext3 por razões de estabilidade, e propuseram bifurcar o código-fonte do ext3, renomeá-lo como ext4.
 
-Para exibir os dispositivos especiais de bloco, execute o comando lsblk: `sudo lsblk`
+Para exibir os dispositivos especiais de bloco, execute o comando lsblk: `sudo lsblk`.
