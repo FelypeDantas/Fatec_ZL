@@ -18,7 +18,7 @@ No GNU/Linux, um sistema de arquivos organiza dados em unidades de armazenamento
 
 O computador armazena dados na memória principal, que perde as informações ao ser desligado. Por isso, o armazenamento secundário é preferido. No entanto, a arquitetura do computador exige que instruções e dados fiquem na memória principal para serem usados.
 
-![Daemon](Daemon.png)
+![Daemon](./Daemon.PNG)
 
 Um processo que executa operações de I/O em um sistema secundário utiliza o Virtual File System para executar tais operações.
 O **File System** (sistema de arquivos) não é exatamente um arquivo, mas sim o método ou estrutura usada por um sistema operacional para organizar, armazenar e acessar dados em dispositivos de armazenamento, como discos rígidos, SSDs ou pen drives. Ele define como os dados são gravados, lidos e organizados no dispositivo.
