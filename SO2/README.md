@@ -100,4 +100,49 @@ Um UID é um número atribuído pelo GNU/Linux a cada usuário no sistema e este
 
 Já as informações de grupo ficam nop arquivo `/etc/group`.
 
-O comando getent exibe entradas de bancos de dados configurados em arquivo /etc/nsswitch.conf incluindo o banco do grupo que podemos usar para consultar uma lista de todos os grupos. `getent group`
+O comando getent exibe entradas de bancos de dados configurados em arquivo /etc/nsswitch.conf incluindo o banco do grupo que podemos usar para consultar uma lista de todos os grupos. `getent group`.
+
+O comando adduser pode ser utilizado para adicionar usuários e até grupos ao sistema operacional, sua sintaxe é simples conforme listagem abaixo.
+
+1. sudo adduser [opções] LOGIN_DO_USUARIO_PRETENDIDO
+2. sudo adduser --group [opções] NOME_DO_GRUPO_PRETENDIDO
+3. sudo adduser [opções] LOGIN_DO_USUARIO_PRETENDIDO grupo
+
+caso o comando adduser ou useradd seja usado com -D cria uma nova conta de usuario.
+
+Grupos podem ser adicionados com o comando adduser ou addgroup, com adduser basta adicionar o comando --group antes do nome do grupo. e podem ser excluídos tanto com deluser como com delgroup, a regra é que um grupo que é default group de algum usuário existente não pode ser escolhido.
+
+O comando usermod é um comando que permite modificar as informações de login de um usuário. A sintaxe do comando assume a seguinte forma: `sudo usermod [options] USER`.
+
+Para adicionar um usuário existente a um grupo secundário, use as -a -G opções após o nome do grupo e o nome de usuário conforme exemplo: `sudo usermod -a -G alunos aluno`.
+
+Para alterar o grupo default de um usuário, execute o comando usermod com o parâmetro -g seguida do nome do grupo e o nome de usuário conforme exemplo: `sudo usermod -g GROUP USER`.
+
+Para alterar as informações de comentário sobre o usuário aluno, execute o comando com a opção -c, e em seguida pelo novo comentário e nome de usuário: `sudo usermod -c "O aluno que faz a aula" aluno`.
+
+Se for necessário alterar o diretório inicial do usuário, execute o comando usermod com a opção -d seguida pelo caminho absoluto do novo diretório inicial e o nome do usuário: `sudo usermod -d /hd2/alunos/aluno aluno`. Por padrão, o comando não move o conteúdo do diretório inicial do usuário para o novo. Para mover o conteúdo, use a opção -m. Se o novo diretório ainda não existir, ele será criado: `sudo usermod -d /hd2/alunos/aluno -m aluno`.
+
+Para alterar o shell padrão do usuário, execute o comando com a opção -s seguida do caminho absoluto do shell e o nome do usuário: `sudo usermod -s /usr/sbin/nologin aluno`.
+
+Para alterar o UID do usuário, execute o comando com a opção -u seguida do novo UID e o nome do usuário: `sudo usermod -u 1300 aluno`.
+
+Embora não seja muito frequente, às vezes você pode querer alterar o nome de um usuário existente. A opção -l é usada para alterar o nome de usuário: `sudo usermod -l aluno aprendiz`. No exemplo o aluno está sendo renomeado para aprendiz. Ao alterar o nome de usuário, você também pode alterar o diretório pessoal do usuário para refletir o novo nome de usuário.
+
+Por exemplo, para desabilitar o usuário aluno2, você executaria o seguinte comando: `sudo usermod -e "2022-02-21" aluno2`. Para desativar a expiração deixe a data vazia.
+
+A opção -L permite que você bloqueie uma conta de usuário. O comando deverá inserir um ponto de exclamação ! na frente da senha criptografada no arquivo /etc/shadown, o usuário não poderá fazer login no sistema usando autenticação de senha.
+Para desbloquear um usuário, execute o comando com o parâmetro -U.
+
+Para verificar o status da conta você pode usar o comando: `passwd -S`, caso retire o argumento -S, o comando sera para alterar a senha. e sendo assim, você pode alterar a senha de outro usuário usando: `sudo passwd usuario` e caso eu acrescente --expire após o passwd, o usuário será obrigado a trocar a senha em seu próximo login.
+
+#### Capitulo 6 : Formatando e montando dispositivos em bloco
+
+O ext foi criado por Rémy Card como uma alternativa ao sistema de arquivos MinixFS, usado nas primeiras versões do Linux. Baseado nos princípios do Berkeley Fast File System da BSD, o ext foi o primeiro sistema de arquivos mais avançado para Linux. Em março de 1993, o ext passou a competir com o ext2, introduzido na versão 0.99.7 do Linux.
+
+O sistema de arquivos ext2 era padrão em várias distribuições GNU/Linux, incluindo Debian e Red Hat Linux, até ser suplantado por ext3, que é quase completamente compatível com ext2 e é um sistema de arquivos com journaling.
+
+O padrão Ext3 é um padrão para o sistema de arquivos com journaling que é comumente usado pelo kernel do Linux e costumava ser o sistema de arquivos padrão para muitas distribuições populares do GNU/Linux. Sua principal vantagem sobre o ext2 é o registro no journaling, que melhora a confiabilidade e elimina a necessidade de verificar o sistema de arquivos após um desligamento incorreto.
+
+Padrão Ext4 é um sistema de arquivos com journaling para Linux, desenvolvido como o sucessor do ext3. O ext4 era inicialmente uma série de extensões compatíveis com versões anteriores para ext3, muitas delas originalmente desenvolvidas por Cluster File Systems, destinadas a estender os limites de armazenamento e adicionar outras melhorias de desempenho. No entanto, outros desenvolvedores do kernel Linux se opuseram a aceitar extensões para ext3 por razões de estabilidade, e propuseram bifurcar o código-fonte do ext3, renomeá-lo como ext4.
+
+Para exibir os dispositivos especiais de bloco, execute o comando lsblk: `sudo lsblk`
