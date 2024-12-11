@@ -28,3 +28,24 @@ Um **arquivo File System** pode se referir a um arquivo usado por alguns sistema
 Um **i-node** é uma estrutura de dados que descreve objetos do sistema de arquivos, como arquivos, diretórios ou links. No Unix, segundo Tanenbaum, o i-node é um registro que inclui um número e o nome de um arquivo.
 
 Saiba que o número de i-nodes tem um limite, geralmente é uma divisão média do espaço da partição pelo tamanho médio dos blocos, geralmente o tamanho médio dos blocos por padrão é 4096 bytes.
+
+Um diretório é um arquivo que organiza informações sobre o sistema de arquivos. Arquivos regulares podem conter dados ou serem executáveis. Segundo o livro **Sistemas Operacionais Modernos**, o que define um arquivo como executável para o sistema operacional é a presença de um "bit mágico" ativado em uma posição específica.
+
+No GNU/Linux, ao abrir um arquivo, ele não é carregado na memória, mas recebe um número de referência (um descritor de arquivo). A função `open()` retorna esse número, que usamos para operar no arquivo. Ao copiar, podemos processar o arquivo em blocos de 4 KB.
+
+Caso queira realizar testes de script, navegue ao diretório `/tmp` primeiro, porque neste diretório, tudo será automaticamente excluido após a inicialização.
+
+Arquivos especiais de Bloco e Caracter são arquivos especiais que referenciam dispositivos de I/O, estes arquivos possuem referência no diretório `/dev` .
+
+Segundo Tanenbaum, dispositivos de bloco realizam operações de entrada e saída em blocos de bytes, enquanto dispositivos de caractere operam com um byte por vez.
+
+No Linux encontrar arquivos sem extensão pode se tornar comum, o comando `file` pode te ajudar a ver do que se trata o arquivo, um exemplo seria `file /etc/passwd` isso retornaria em que charset está o arquivo, nesse caso retornaria `ASCII text`, pois o texto encontrado está em ASCII, já o comando `stat` informa coisas como:
+- tamanho do arquivo
+- permissões de acesso
+- ID do usuário e do Grupo
+- Hora em que foi criado
+- Hora em que foi acessado
+
+Caso necessite compilar um arquivo c++ no terminal linux o comando seria:
+1. g++ -o arquivo arquivo.cpp
+2.  ./arquivo 
