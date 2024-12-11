@@ -97,3 +97,7 @@ Exemplo de uso `ln -s <arquivo_origem> <link_simbolico>`.
 #### Capitulo 5 : Usuários GNU/Linux
 
 Um UID é um número atribuído pelo GNU/Linux a cada usuário no sistema e este número é usado para identifica-lo no sistema e determinar quais recursos do sistema ele pode acessar, estas identificações estão armazenadas no arquivo `/etc/passwd`, arquivo este ao qual armazena informações dos usuários.
+
+Já as informações de grupo ficam nop arquivo `/etc/group`.
+
+O comando getent exibe entradas de bancos de dados configurados em arquivo /etc/nsswitch.conf incluindo o banco do grupo que podemos usar para consultar uma lista de todos os grupos. `getent group`
