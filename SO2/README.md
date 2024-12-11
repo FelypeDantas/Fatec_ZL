@@ -146,3 +146,29 @@ O padrão Ext3 é um padrão para o sistema de arquivos com journaling que é co
 Padrão Ext4 é um sistema de arquivos com journaling para Linux, desenvolvido como o sucessor do ext3. O ext4 era inicialmente uma série de extensões compatíveis com versões anteriores para ext3, muitas delas originalmente desenvolvidas por Cluster File Systems, destinadas a estender os limites de armazenamento e adicionar outras melhorias de desempenho. No entanto, outros desenvolvedores do kernel Linux se opuseram a aceitar extensões para ext3 por razões de estabilidade, e propuseram bifurcar o código-fonte do ext3, renomeá-lo como ext4.
 
 Para exibir os dispositivos especiais de bloco, execute o comando lsblk: `sudo lsblk`.
+
+#### Capitulo 7 : Gerenciamento de Processos no GNU/Linux
+
+O que diferencia um arquivo executável de um arquivo de dados de um executável é que este possui um bit-mágico ativo e o Sistema Operacional compreende que este arquivo deve ser tratado de forma diferente pelo seu mecanismo.
+
+A função `fork()` em C/C++ cria um novo processo filho, que é uma cópia do processo pai, com a diferença de que o filho tem um novo ID de processo. O processo filho recebe a mesma imagem de memória e o mesmo código do pai, mas com uma estrutura de processo nova. O valor retornado por `fork()` é o que permite identificar se o código está sendo executado pelo pai ou pelo filho.
+
+Pode-se usar `wait()` para aguardar a execução de um procedimento realizado por outro processo.
+
+Os sinais POSIX são usados para informar um processo ou thread sobre um evento específico, como uma interrupção de hardware ou a necessidade de comunicação entre processos. Quando um sinal é gerado, o processador faz uma troca de contexto para tratar o evento, permitindo que o sistema operacional responda de acordo com a origem e a causa da interrupção.
+
+Policy é o comportamento do scheduler que determina o que é executado quando. A política de um scheduler geralmente determina a sensação geral de um sistema e é responsável pela utilização ideal do tempo do processador.
+
+Um tipo comum de algoritmo de escalonamento é o escalonamento baseado em prioridade (caso do Kernel Linux). A ideia é classificar os processos com base em seu valor e necessidade de tempo de processador. Os processos com uma prioridade mais alta serão executados antes daqueles com uma prioridade mais baixa, enquanto os processos com a mesma prioridade são rodados em rodízio programado (um após o próximo, repetindo).
+
+O timeslice é o valor numérico que representa por quanto tempo uma tarefa pode ser executada até ser interrompida. A política do scheduler deve ditar um timeslice padrão, o que não é simples. Uma fatia de tempo muito longa fará com que o sistema tenha um desempenho interativo insatisfatório, já o sistema não terá mais a sensação de que os aplicativos estão sendo executados simultaneamente. Uma fatia de tempo muito curta fará com que uma quantidade significativa de tempo do processador seja desperdiçada na sobrecarga dos processos de comutação, pois uma porcentagem significativa do tempo do sistema será gasta na alternância de um processo com uma fatia de tempo curta para o próximo.
+
+A estrutura de dados básica no schedule é uma fila de execução, o runqueue é definido em kernel/sched.c como  uma struct runqueue. A fila de execução é a lista de processos executáveis ​​em um determinado processador, há uma fila de execução por processador. 
+
+Cada fila de execução contém duas matrizes de prioridade, a matriz ativa e a expirada. Matrizes de prioridade são definidas em kernel/sched.c como struct prio_array. Matrizes de prioridade são a estrutura de dados que fornece O(1) shedule. Cada array de prioridade contém uma fila de processadores executáveis ​​por nível de prioridade.
+
+Tarefas suspensas (bloqueadas) não estão sendo executadas, o que evita que o agendador escolha tarefas erradas ou use um loop para simular a suspensão. Uma tarefa pode ficar "dormindo" aguardando um evento, como um tempo específico, dados de um arquivo de I/O ou uma interrupção de hardware.
+
+Uma tarefa pode adormecer involuntariamente ao tentar acessar um recurso, como um semáforo no kernel. Isso é comum em operações de I/O, como quando uma tarefa faz um pedido `read()` para ler um arquivo do disco ou espera por uma entrada do teclado. Despertar é o inverso; a tarefa é definida como executável, removida da fila de espera e adicionada de volta à fila de execução.
+
+Comunicação entre processos (IPC) são os mecanismos que permitem que processos compartilhem dados. Normalmente, em IPC, há um cliente que faz solicitações e um servidor que responde a essas solicitações. Muitos aplicativos funcionam como clientes e servidores, especialmente em sistemas distribuídos.
