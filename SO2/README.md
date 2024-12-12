@@ -212,3 +212,34 @@ A configuração do DNS (IP do serviço de tradução de nomes) pode ser realiza
 2. /etc/resolv.conf
 No caso do arquivo 1, o atributo que deve ser adicionado é o atributo dns-nameservers 
 
+O comando dig é mais um comando que exibe informações sobre um domínio, mas uma grande vantagem que vejo é que consigo com ele obter dados de um domínio na "na visão de um servidor DNS específico". 
+
+O arquivo `/etc/hosts` é um dos mais antigos e ainda usado em sistemas Unix, Linux e Windows. Originalmente, ele servia para mapear nomes de hosts (computadores) para endereços IP, antes da criação do DNS (Sistema de Nomes de Domínio). Naquela época, esse arquivo era replicado manualmente e crescia muito, tornando a manutenção difícil.
+
+Com o tempo, o DNS foi criado para resolver esse problema, mas o arquivo `/etc/hosts` ainda é consultado pelos sistemas. Antes de procurar o DNS, o computador verifica esse arquivo para ver se o nome de domínio já está ali. Se não encontrar, então consulta o serviço DNS.
+
+Quando não sabemos a topologia da rede, usamos o ICMP para descobrir o caminho que um pacote percorre até o destino ou para identificar gargalos, gerando um relatório de tempos de resposta.
+
+Em vez de enviar um único pacote ICMP com TTL alto, como o comando *ping*, o programa *Traceroute* envia pacotes ICMP com TTL começando em 1. Quando o primeiro roteador responde, o *Traceroute* aumenta o TTL em 1 e repete o processo até que o pacote chegue ao destino final. Isso permite descobrir todos os roteadores intermediários no caminho.
+
+O *netstat* é uma ferramenta de linha de comando que mostra informações sobre conexões de rede, roteamento, estatísticas de interfaces e outros dados relacionados à rede no Linux. É útil para solucionar problemas de rede e analisar o desempenho. Além disso, também é uma ferramenta fundamental de depuração de serviços de rede usada para verificar quais programas estão escutando em quais portas.
+
+O comando make no GNU/Linux é um dos comandos mais usados ​​pelos administradores de sistema e programadores. Embora ajude os administradores a compilar e instalar muitos utilitários de código aberto por meio da linha de comando, os programadores o usam para gerenciar a compilação de seus projetos grandes e complicados.
+
+O comando make por padrão consome um arquivo de configuração chamado Makefile que está localizado no mesmo diretório do projeto, é comum navegar o cursor do sistema de arquivos até a raiz do projeto onde se encontra o arquivo Makefile.
+
+O comando dpkg atua em instalações de baixo nível, já vimos como utilizar o utilitário dpkg-deb para gerar um pacote .deb.
+
+O comando *apt* baixa e instala pacotes de software de repositórios, que são servidores de rede ou até CD/DVD. A lista desses repositórios é definida no arquivo *sources.list*, localizado em /etc/apt/, onde cada linha corresponde a um repositório.
+
+#### Capitulo 9 : Instalando programas
+
+repository pode ser um repositório que pode ser adicionada ao sources.list exemplo: deb http://repo.tld/ubuntu distro component ou um repositório PPA no formato ppa:<user>/<ppa-name>. Veja um exemplo para instalação do Mariadb.
+
+Para listar os pacotes em um repositório, primeiro o administrador deve localizar todos os arquivos que o nome terminam com _Packages e que estão no diretório /var/lib/apt/lists/, um simples ls /var/lib/apt/lists/*_Packages pode resolver isso.
+
+Com o GREP pode-se filtrar os nomes dos pacotes, conforme exemplo : `cat /var/lib/apt/lists/deb.debian.org_debian_dists_buster-updates_main_binary-amd64_Packages | grep Package:`
+
+O administrador deve percorrer a lista de atualizações e se certificar que todos os repositórios foram acessados e que obteve sucesso no update. Esta operação também é recomendada antes de qualquer install.
+
+A variável de ambiente PATH é uma variável do sistema que é utilizado pelos programas para acessarem um rol de programas ou scripts sem o uso de todo o caminho dos mesmos, ou seja, em vez de usar no terminal /bin/cp usamos simplesmente cp pois este comando está em um determinado diretório mapeando em PATH.
