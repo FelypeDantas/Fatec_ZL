@@ -172,3 +172,43 @@ Tarefas suspensas (bloqueadas) não estão sendo executadas, o que evita que o a
 Uma tarefa pode adormecer involuntariamente ao tentar acessar um recurso, como um semáforo no kernel. Isso é comum em operações de I/O, como quando uma tarefa faz um pedido `read()` para ler um arquivo do disco ou espera por uma entrada do teclado. Despertar é o inverso; a tarefa é definida como executável, removida da fila de espera e adicionada de volta à fila de execução.
 
 Comunicação entre processos (IPC) são os mecanismos que permitem que processos compartilhem dados. Normalmente, em IPC, há um cliente que faz solicitações e um servidor que responde a essas solicitações. Muitos aplicativos funcionam como clientes e servidores, especialmente em sistemas distribuídos.
+
+#### Capitulo 8 : Configurando Interface de rede em Linux
+
+Uma interface de rede ou NIC é um dispositivo de Entrada e Saída responsável por enviar e receber dados da rede, e um Sistema Operacional pode possuir várias interfaces de rede.
+
+O principal comando utilizado nesta sessão é o comando ip, naturalmente não é o único mas é amplamente utilizado.
+
+Os endereços classe C são os clássicos nas LANs, principalmente em ambiente Home, já as classes B e A são mais clássicas em ambientes Office, pois admite-se que em sua casa a pessoa não possui mais de 253 equipamentos em rede ao mesmo tempo.
+
+Um endereço de rede muito usado em ambiente Home é o endereço 192.168.0.0/24, ou seja, rede 192.168.0.0 com máscara de rede 255.255.255.0. No Windows é possível ver este endereço com o comando ipconfig, já no GNU/Linux com o comando ip address.
+
+Repare que está sendo definida a rede informando o endereço 192.168.200.0, isso ocorre pois sempre o primeiro endereço é utilizado para definir a Rede ou a Sub-rede, por isso o endereço 192.168.200.0 não é usado em interfaces NIC em Hosts ou Routers. O aluno deve compreender que o último endereço 192.168.200.255 é utilizado pelo Broadcast da rede, e também não pode ser utilizado em interfaces NIC. 
+
+Para filtrar Interfaces de rede Ethernet basta utilizar o comando: `lspci | grep Ethernet`.
+
+Existe a possibilidade de uso de uma interface de rede Plug and Play por USB, neste caso o comando lspci não irã localizar a interface, ela é uma opção comum em:
+- Notebooks modernos que não possuem a interface Ethernet;
+- Em uma TI para solucionar um problema urgente de falha de interface PCI;
+
+o comando seria: `sudo lsusb`.
+
+Com o comando ip nesse sentido podemos trabalhar nas camadas de enlace de dados e na camada de redes do modelo OSI. Onde:
+Onde:
+- *ip address* para configurar a camada de Rede (Modelo OSI);
+- *ip route* para configurar rotas de saída do computador na camada de Rede (Modelo OSI);
+- *ip link* para configurar a interface e interação com a parte física, pela camada de Enlace (Modelo OSI).
+
+Utilizando o comando `sudo ip address del 192.168.0.6/24 dev enp0s3` pode excluir o ip da sua rede, e para adicionar tal ip deve trocar o comando del por add.
+
+Para adicionar um Router Gateway padrão utilize o comando: `sudo ip route add default via 192.168.0.1`. Caso queira remover, substitua o comando add por del.
+
+A linha allow-hotplug enp0s3 ativa a interface de rede enp0s3, pode ser substituída por auto enp0s3. A diferença é que o allow-hotplug inicia a interface de rede junto com o Sistema Operacional, se algum problema ocorrer o Linux vai demorar um minuto a mais para carregar. Já o auto, a placa de rede é carregada após o carregamento do sistema operacional.
+
+Após fazer a configuração por arquivo de configuração, é fundamental que se reinicie o Networking, para isso execute o comando: `sudo systemctl restart networking.service`.
+
+A configuração do DNS (IP do serviço de tradução de nomes) pode ser realizado em dois arquivos, são estes:
+1. /etc/network/interfaces
+2. /etc/resolv.conf
+No caso do arquivo 1, o atributo que deve ser adicionado é o atributo dns-nameservers 
+
