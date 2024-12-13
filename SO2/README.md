@@ -194,7 +194,6 @@ Existe a possibilidade de uso de uma interface de rede Plug and Play por USB, ne
 o comando seria: `sudo lsusb`.
 
 Com o comando ip nesse sentido podemos trabalhar nas camadas de enlace de dados e na camada de redes do modelo OSI. Onde:
-Onde:
 - *ip address* para configurar a camada de Rede (Modelo OSI);
 - *ip route* para configurar rotas de saída do computador na camada de Rede (Modelo OSI);
 - *ip link* para configurar a interface e interação com a parte física, pela camada de Enlace (Modelo OSI).
