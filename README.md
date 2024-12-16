@@ -82,10 +82,3 @@ Feito por Felype Dantas Dos Santos 👨🏻‍💻 Entre em contato!
 [![Whatszap Badge](https://img.shields.io/badge/Felype-25D366.svg?style=for-the-badge&logo=WhatsApp&logoColor=white)](https://wa.me/qr/EOCNNKM4XUHDM1)
 
 </div>
-
-## Como usar
-
-Para visualizar o código e a documentação de cada disciplina, basta clicar no link correspondente. Você pode clonar o repositório para ter acesso aos arquivos localmente:
-
-```bash
-    git clone https://github.com/seu_usuario/Fatec_ZL.git
